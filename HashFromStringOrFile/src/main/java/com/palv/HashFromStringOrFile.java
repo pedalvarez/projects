@@ -12,7 +12,7 @@ public class HashFromStringOrFile
         String stringToEncrypt = "alert('Hello, world.');";
 
         // qznLcsROx4GACP2dm0UCKCzCG+HiZ1guq6ZZDob/Tng=
-        String encoded = generateHaah(stringToEncrypt,"sha-256");
+        String encoded = generateHash(stringToEncrypt,"sha-256");
         if(encoded.equals("qznLcsROx4GACP2dm0UCKCzCG+HiZ1guq6ZZDob/Tng=")){
             System.out.println("OK");
         }
@@ -36,7 +36,7 @@ public class HashFromStringOrFile
      * @throws NoSuchAlgorithmException
      * @throws IOException
      */
-    private static String generateHaah(String stringToEncrypt, String algorithm) throws NoSuchAlgorithmException, IOException {
+    private static String generateHash(String stringToEncrypt, String algorithm) throws NoSuchAlgorithmException, IOException {
         MessageDigest digest = MessageDigest.getInstance(algorithm);
         byte[] hash = digest.digest(stringToEncrypt.getBytes());
         return java.util.Base64.getEncoder().encodeToString(hash);
