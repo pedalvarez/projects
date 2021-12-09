@@ -30,11 +30,11 @@ int main( int argc, char *argv[] )
     printf( "\nHit any key to abort!\n\n" );
     printf( "Compressing %s to test.zl.  "
             "Percent complete: ", argv[ 1 ] );
-    int result = c_stream->compress( argv[ 1 ], "C:\\Projects\\Cama\\DemDev\\dem\\zlib\\pedzip\\pedzip\\Debug\\test.zl",Z_DEFAULT_COMPRESSION );
+    int result = c_stream->compress( argv[ 1 ], "test.zl",Z_DEFAULT_COMPRESSION );
     if ( result == Z_OK ) {
         printf( "\nDecompressing test.zl to test.out."
                 "  Percent complete: " );
-        result = c_stream->decompress( "C:\\Projects\\Cama\\DemDev\\dem\\zlib\\pedzip\\pedzip\\Debug\\test.zl", "C:\\Projects\\Cama\\DemDev\\dem\\zlib\\pedzip\\pedzip\\Debug\\test.out" );
+        result = c_stream->decompress( "test.zl", "test.out" );
         printf( "\n" );
     }
     if ( result != Z_OK )
