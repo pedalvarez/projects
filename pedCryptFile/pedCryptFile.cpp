@@ -364,13 +364,13 @@ int main(int argc, char* argv[]){
     FILE* hSource;
     FILE* hDestination;
     errno_t err;
-    if (err = fopen_s(&hSource, szSource, "rb") != 0) {
+    if (err = fopen_s(&hSource, szSource, "rb") == 0) {
         printf("The source plaintext file, %s, is open. \n", szSource);
     }
     else {
         ErrorHandler("Opening source file");
     }
-    if (err = fopen_s(&hDestination, szDestination, "wb") != 0) {
+    if (err = fopen_s(&hDestination, szDestination, "wb") == 0) {
         printf("Destination file %s is open. \n", szDestination);
     }
     else {
