@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Diagnostics.Metrics;
+using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -22,22 +25,56 @@ class Program
         IntPtr pnt1 = Marshal.AllocHGlobal(size);
         Marshal.Copy(utf8Bytes, 0, pnt1, size);
 
+        string dictionary = ZLibDictionary(text);
+
         int len;
-        IntPtr dataPtr = Compress(pnt1, size, 14668, "12345678900987654321",out len);
+        IntPtr dataPtr = Compress(pnt1, size, 14668, dictionary, out len);
         Marshal.FreeHGlobal(pnt1);
         if (dataPtr == IntPtr.Zero)
         {
             // handle error
         }
-        else
+        else 
         {
             int len2;
-            IntPtr dataPtr2 = Decompress(dataPtr, len, 14668, "12345678900987654321", out len2);
-
+            IntPtr dataPtr2 = Decompress(dataPtr, len, 14668, dictionary, out len2);
             byte[] data = new byte[len2];
             Marshal.Copy(dataPtr2, data, 0, len2);
-
             String result = System.Text.Encoding.UTF8.GetString(data, 0, len2);
+            Console.Write(result);
         }
+    }
+
+    static string ZLibDictionary(string s)
+    {
+        const int ZLIB_MAX_DICT_SIZE = 32 * 1024;
+
+        // From zlib manual https://www.zlib.net/manual.html
+        // The dictionary should consist of strings(byte sequences) that are likely to be encountered later in the data to be compressed,
+        // with the most commonly used strings preferably put towards the end of the dictionary.
+        // Using a dictionary is most useful when the data to be compressed is short and can be predicted with good accuracy;
+        // the data can then be compressed better than with the default empty dictionary.
+
+        //\t tab
+        //\n Line Feed
+        //\r Carriage Return
+        //\n\r Carriage Return + Line Feed
+        //\v or \x0b Line Tabulation
+        //\f or \x0c Form Feed
+        //\x1c File Separator
+        //\x1d Group Separator
+        //\x1e Record Separator
+        //\x85 Next Line(C1 Control Code)
+        //\u2028	Line Separator
+        //\u2029	Paragraph Separator
+
+        var stringsarray = s.Split(new string[] { "\t", "\t\t", "\t\t\t", "\n", "\r", "\n\r", "\v", "\x0b", "\f", "\x0c", "\x1c", "x1d", "x1e", "\x85", "\u2028", "\u2029" }, StringSplitOptions.RemoveEmptyEntries);
+        var common = stringsarray.ToList().GroupBy(e => e).Select(g => new { Value = g.Key, Count = g.Count() }).OrderByDescending(e => e.Count).Take(stringsarray.Length).Reverse().Select(v => v.Value); ;
+
+        string result = string.Join("",common);
+        if (result.Length > ZLIB_MAX_DICT_SIZE)
+           return result.Substring(result.Length - ZLIB_MAX_DICT_SIZE);
+        else
+           return result;
     }
 }
