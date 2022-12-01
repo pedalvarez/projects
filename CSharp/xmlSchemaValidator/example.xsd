@@ -1,0 +1,24 @@
+<xs:schema id="XSDSchemaTest"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+  elementFormDefault="qualified" 
+  attributeFormDefault="unqualified"
+>
+
+ <xs:simpleType name="FamilyMemberType">
+  <xs:restriction base="xs:string">
+   <xs:enumeration value="384" />
+   <xs:enumeration value="385" />
+   <xs:enumeration value="386" />
+   <xs:enumeration value="" />
+  </xs:restriction>        
+ </xs:simpleType>
+
+   <xs:element name="Answer">
+     <xs:complexType>
+    <xs:sequence>
+      <xs:element name="ShortDesc" type="FamilyMemberType" />
+      <xs:element name="AnswerValue" type="xs:int" />
+     </xs:sequence>
+      </xs:complexType>
+     </xs:element>
+</xs:schema>

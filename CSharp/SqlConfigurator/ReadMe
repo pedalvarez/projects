@@ -1,0 +1,4 @@
+uses  Visual Studio ADO.NET Add Data Connection dialogs
+http://code.msdn.microsoft.com/Connection/Release/ProjectReleases.aspx?ReleaseId=3863
+
+Show how to use the dialogs to access different databases and configure connection strings

@@ -1,0 +1,8 @@
+<config>
+  <connection_string>Provider=SQLOLEDB;Data Source=(local);Initial Catalog=DB;Integrated Security=SSPI;Connect Timeout=20</connection_string>
+  <database_type>SQLSERVER</database_type>
+  <connection_type>OLE DB</connection_type>    
+  <logs_path>
+  </logs_path>
+  <log_file>False</log_file>    
+</config>
