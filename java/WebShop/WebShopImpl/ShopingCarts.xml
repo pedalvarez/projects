@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <DataShoppingCart>
+    <Id>1</Id> 	
+    <userId>1</userId>
+    <item>
+      <productId>1</productId>
+      <quantity>2</quantity>
+    </item>
+   </DataShoppingCart>
+  <DataShoppingCart>
+    <Id>2</Id>
+    <userId>2</userId>
+    <item>
+      <productId>2</productId>
+      <quantity>1</quantity>
+    </item>
+    <item>
+      <productId>1</productId>
+      <quantity>3</quantity>
+    </item>
+  </DataShoppingCart>
+ </data>
+  

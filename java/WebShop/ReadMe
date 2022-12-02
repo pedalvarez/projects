@@ -1,0 +1,21 @@
+Example of a SOAP WebService in Java
+
+The Web Shop consists of 6 different parts (5 NetBeans projects + XML schema with
+associated data)
+1) XML Schema Objects.xsd is under WebShopImpl and there are also all of them
+xml instances used:
+a. Organizations.xml (has all defined organizations)
+b. User.xml (all users)
+c. Products (all products with attributes)
+d. ShoppingCart.xml (current shopping carts with products for a certain
+users belonging to an organization)
+2) WebShopLib: Is a Lib project to wrap XML schema Objects.xsd to
+java classes using JAXB and exposing them
+3) WebShopInterface: A lib that defines a Web Service interface with
+useful methods and based on object types from WebShopLib.
+4) WebShopImpl: Executable project that implements a Web Service for
+The web shop that takes care of data that is stored in XML files and
+exposes it upwards to Web clients.
+5) WebShopClient: HTTP Web client based on a PHP layer on the Web server side and
+HTML pages with jscript.
+6) WebShopJavaClient: Java Web client.

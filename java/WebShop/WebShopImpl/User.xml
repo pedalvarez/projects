@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+  <DataUser>
+    <name>Kalle</name>
+    <userId>1</userId>
+    <Address>Storgatan1</Address>
+    <OrgName>PEAL</OrgName>
+  </DataUser>
+  <DataUser>
+    <name>Daniel</name>
+    <userId>2</userId>
+    <Address>Storgatan 2</Address>
+    <OrgName>PEAL</OrgName>
+  </DataUser>
+  <DataUser>
+    <name>Peter</name>
+    <userId>3</userId>
+    <Address>Storgatan 3</Address>
+    <OrgName>PEAL</OrgName>
+  </DataUser>
+  <DataUser>
+    <name>Tomas</name>
+    <userId>4</userId>
+    <Address>Storgatan 4</Address>
+    <OrgName>PEAL</OrgName>
+  </DataUser>
+  </data>
+  

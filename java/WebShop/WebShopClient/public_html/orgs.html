@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+-->
+<html>
+    <head>
+        <title>Get Organizations</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="js/jquery-1.11.2.js"></script>
+        <link href="js/JSTreeGraph.css" rel="stylesheet" type="text/css" />
+        <script src="js/JSTreeGraph.min.js" type="text/javascript"></script>        
+        
+        <script language="JavaScript">
+            
+        var rootNode = new Object();
+        rootNode.Content = "Root Node";
+        rootNode.Nodes = new Array();
+    
+        function FindChildren(data, root){
+            var index = 0;
+            $.each(data, function(i, post) {                
+                if(post.ParentOrgName === root.Content){
+                    root.Nodes[index] = { Content: post.name };
+                    root.Nodes[index].Nodes = new Array();
+                    FindChildren(data,root.Nodes[index]);                    
+                    index++;
+                }                
+            });
+        }
+
+        function GetOrganizations() {
+             $.ajax({
+                url: 'http://127.0.0.1/GetOrgs.php', // location of your php script  
+                type: 'POST',
+                data: { "getOrganizations": ""},
+                datatype:"JSON",
+                //asynch: false,
+                error: function (xhr, textStatus, errorThrown) { alert(xhr + ' ' + textStatus + '' + errorThrown) },
+                success: function (response) {
+                    //document.getElementById("result").innerHTML = "Organizations:" + response;
+                    var root = "";
+                    var data = $.parseJSON(response);
+                    $.each(data, function(i, post) {
+                        if(post.ParentOrgName === ""){
+                            rootNode.Content = post.name;
+                            root = post.name;
+                        }
+                    });       
+                    if( root != ""){       
+                        FindChildren(data, rootNode);
+                    }
+                    // Get the reference to a container layer
+                    var container = document.getElementById("dvTreeContainer");
+                    // Build tree with options
+                    DrawTree({
+                        Container: container,
+                        RootNode: rootNode
+                    });
+                }
+            });
+        } 
+    </script>
+     
+    </head>
+    <body>
+      <form name="DemoForm">
+         <button onclick="GetOrganizations()">Get Orgs</button>
+         <!-- <p id="result">Result:</p> -->         
+         <div id="dvTreeContainer"></div>
+         <div>
+         <a href="index.html">Back</a>
+         </div>
+      </form>
+      
+     </body>
+</html>

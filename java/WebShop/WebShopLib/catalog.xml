@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Development/Tacton/WebShop/WebShobLib/../XML/Objects.xsd" uri="xml-resources/jaxb/xmlBindingd/Objects.xsd"/>
+    <system systemId="file:/C:/Development/Tacton/WebShop/WebShopLib/../XML/Objects.xsd" uri="xml-resources/jaxb/xmlBINDING/Objects.xsd"/>
+    <system systemId="file:/C:/Development/Tacton/WebShop/WebShopLib/../WebShopImpl/Objects.xsd" uri="xml-resources/jaxb/xmlBINDING/Objects.xsd"/>
+</catalog>
