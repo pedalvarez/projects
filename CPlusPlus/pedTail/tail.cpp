@@ -36,6 +36,8 @@ again:
 
 	v_len = _filelength(_fileno(stream_in));
 
+	v_size = v_len > v_size ? v_size : v_len;
+
 	v_offset = v_len-v_size;
 	
 	fsetpos(stream_in, &v_offset);
