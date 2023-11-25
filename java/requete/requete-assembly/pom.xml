@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>requete-all</artifactId>
+        <groupId>com.palv.requete</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>requete-assembly</artifactId>
+    <name>requete-assembly</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/assembly/src.xml</descriptor>
+                    </descriptors>
+                    <archiverConfig>
+                        <compress>false</compress>
+                    </archiverConfig>
+                    <archive>
+                        <manifestEntries>
+                            <Spring-Boot-Version>1.5.7.RELEASE</Spring-Boot-Version>
+                            <Main-Class>org.springframework.boot.loader.JarLauncher</Main-Class>
+                            <Start-Class>req.Application</Start-Class>
+                            <Spring-Boot-Classes>BOOT-INF/classes/</Spring-Boot-Classes>
+                            <Spring-Boot-Lib>BOOT-INF/lib/</Spring-Boot-Lib>
+                            <Specification-Title>${project.name}</Specification-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>requete</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.palv.requete</groupId>
+            <artifactId>requete-gui</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

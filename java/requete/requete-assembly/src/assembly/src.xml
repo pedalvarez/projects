@@ -1,0 +1,45 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>requete</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>target/classes</directory>
+            <outputDirectory>.</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+    <dependencySets>
+
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <includes>
+                <include>org.springframework.boot:requete</include>
+            </includes>
+            <unpack>true</unpack>
+            <useStrictFiltering>true</useStrictFiltering>
+        </dependencySet>
+
+        <dependencySet>
+            <outputDirectory>/BOOT-INF/classes</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+            <includes>
+                <include>com.palv.requete:requete-gui</include>
+            </includes>
+            <unpack>true</unpack>
+            <unpackOptions>
+                <excludes>
+                    <exclude>META-INF</exclude>
+                </excludes>
+            </unpackOptions>
+            <useStrictFiltering>true</useStrictFiltering>
+        </dependencySet>
+
+    </dependencySets>
+</assembly>
