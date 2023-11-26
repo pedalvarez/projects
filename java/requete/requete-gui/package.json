@@ -51,7 +51,7 @@
         "babel-helper-function-name": "6.24.1",
         "babel-runtime": "6.26.0",
         "babel-types": "6.26.0",
-        "lodash": "4.17.10"
+        "lodash": "4.17.12"
       }
     },
     "babel-helper-explode-assignable-expression": {
@@ -452,7 +452,7 @@
         "babel-plugin-transform-regenerator": "6.26.0",
         "browserslist": "3.2.8",
         "invariant": "2.2.4",
-        "semver": "5.5.1"
+        "semver": "5.7.2"
       }
     },
     "babel-runtime": {
@@ -489,7 +489,7 @@
         "debug": "2.6.9",
         "globals": "9.18.0",
         "invariant": "2.2.4",
-        "lodash": "4.17.10"
+        "lodash": "4.17.21"
       }
     },
     "babel-types": {
