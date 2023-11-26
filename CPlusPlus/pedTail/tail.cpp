@@ -13,7 +13,7 @@ void  main(int argc, char* argv[])
 		return;
 	}
 	
-	char* v_FileName_in = (char*)argv[1];
+	const char* v_FileName_in = (const char*)argv[1];
 	
 	__int64 v_size = 512;
     
@@ -27,7 +27,7 @@ void  main(int argc, char* argv[])
 
 again:
 	FILE* stream_in;
-	stream_in  = fopen( v_FileName_in, "rb" );   // use fopen, in favor of fopen_s
+	stream_in = fopen(v_FileName_in, "rb");   // use fopen, in favor of fopen_s
 	if( stream_in == NULL )
 	{
 		printf("Unable to open input file %s\n\n", v_FileName_in);
@@ -46,9 +46,13 @@ again:
 	while (v_size > 0)
 	{
 		if (v_size > CHUNK_SIZE)
+		{
 			v_count = fread(v_buffer, sizeof(char), CHUNK_SIZE, stream_in);
+		}
 		else
+		{
 			v_count = fread(v_buffer, sizeof(char), v_size, stream_in);
+		}
 
 		if (v_count != v_size)
 		{
@@ -57,10 +61,7 @@ again:
 		}
 
 		v_count = fwrite(v_buffer, 1, v_count, stdout);
-		if (v_count != 0)
-			v_size -= v_count;
-		else
-			v_size = 0;
+		(v_count > 0) ? v_size -= v_count : v_size = 0;
 	}
 	fclose(stream_in);
 
@@ -68,7 +69,7 @@ again:
 
     while(1)
 	{
-        stream_in  = fopen( v_FileName_in, "rb" );	
+		stream_in = fopen(v_FileName_in, "rb");   // use fopen, in favor of fopen_s
 		if( stream_in == NULL )
 		{
 			printf("Unable to open input file %s\n\n", v_FileName_in);
@@ -123,11 +124,8 @@ again:
 
 				delete [] pTmp;
 				pTmp=NULL;
-						
-				if (v_count > 0)
-					v_size -= v_count;
-				else
-					v_size = 0;
+
+				(v_count > 0) ? v_size -= v_count : v_size = 0;
 			}
 		}
 		else if (v_len2 < v_len)
