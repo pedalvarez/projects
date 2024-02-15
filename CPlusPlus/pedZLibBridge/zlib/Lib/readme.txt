@@ -1,1 +1,0 @@
-Static libraries built from contrib/vstudio/vs22
