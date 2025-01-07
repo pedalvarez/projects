@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.ComponentModel;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -123,13 +124,13 @@ namespace SQLConfigurator
 					new ToolStripSeparator(),
 					new ToolStripMenuItem()
 				});
-				_contextMenu.Items[0].Text = Strings.DataConnectionAdvancedDialog_Reset;
+				_contextMenu.Items[0].Text = Resources.DataConnectionAdvancedDialog_Reset;
 				_contextMenu.Items[0].Click += new EventHandler(ResetProperty);
-				_contextMenu.Items[2].Text = Strings.DataConnectionAdvancedDialog_Add;
+				_contextMenu.Items[2].Text = Resources.DataConnectionAdvancedDialog_Add;
 				_contextMenu.Items[2].Click += new EventHandler(AddProperty);
-				_contextMenu.Items[3].Text = Strings.DataConnectionAdvancedDialog_Remove;
+				_contextMenu.Items[3].Text = Resources.DataConnectionAdvancedDialog_Remove;
 				_contextMenu.Items[3].Click += new EventHandler(RemoveProperty);
-				_contextMenu.Items[5].Text = Strings.DataConnectionAdvancedDialog_Description;
+				_contextMenu.Items[5].Text = Resources.DataConnectionAdvancedDialog_Description;
 				_contextMenu.Items[5].Click += new EventHandler(ToggleDescription);
 				(_contextMenu.Items[5] as ToolStripMenuItem).Checked = this.HelpVisible;
 				_contextMenu.Opened += new EventHandler(SetupContextMenu);

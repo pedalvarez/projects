@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.OleDb;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -467,7 +468,7 @@ namespace SQLConfigurator
 			string dataSource = ConnectionStringBuilder["Data Source"] as string;
 			if (dataSource == null || dataSource.Length == 0)
 			{
-				throw new InvalidOperationException(Strings.OleDBAccessConnectionProperties_MustSpecifyDataSource);
+				throw new InvalidOperationException(Resources.OleDBAccessConnectionProperties_MustSpecifyDataSource);
 			}
 			base.Test();
 		}

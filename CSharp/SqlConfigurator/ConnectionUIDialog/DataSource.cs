@@ -7,6 +7,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -16,7 +17,7 @@ namespace SQLConfigurator
 
 		private DataSource()
 		{
-			_displayName = Strings.DataSource_UnspecifiedDisplayName;
+			_displayName = Resources.DataSource_UnspecifiedDisplayName;
 			_providers = new DataProviderCollection(this);
 		}
 
@@ -52,7 +53,7 @@ namespace SQLConfigurator
 			{
 				if (_sqlDataSource == null)
 				{
-					_sqlDataSource = new DataSource("MicrosoftSqlServer", Strings.DataSource_MicrosoftSqlServer);
+					_sqlDataSource = new DataSource("MicrosoftSqlServer", Resources.DataSource_MicrosoftSqlServer);
 					//_sqlDataSource.Providers.Add(DataProvider.SqlDataProvider);    // PEAL: disabel, only OLEDB provider allowed so far
 					_sqlDataSource.Providers.Add(DataProvider.OleDBDataProvider);
 					//_sqlDataSource.DefaultProvider = DataProvider.SqlDataProvider; // PEAL: no need default only one
@@ -69,7 +70,7 @@ namespace SQLConfigurator
 			{
 				if (_sqlFileDataSource == null)
 				{
-					_sqlFileDataSource = new DataSource("MicrosoftSqlServerFile", Strings.DataSource_MicrosoftSqlServerFile);
+					_sqlFileDataSource = new DataSource("MicrosoftSqlServerFile", Resources.DataSource_MicrosoftSqlServerFile);
 					_sqlFileDataSource.Providers.Add(DataProvider.SqlDataProvider);
 				}
 				return _sqlFileDataSource;
@@ -83,7 +84,7 @@ namespace SQLConfigurator
 			{
 				if (_oracleDataSource == null)
 				{
-					_oracleDataSource = new DataSource("Oracle", Strings.DataSource_Oracle);					
+					_oracleDataSource = new DataSource("Oracle", Resources.DataSource_Oracle);					
 					_oracleDataSource.Providers.Add(DataProvider.OleDBDataProvider);
                     _oracleDataSource.Providers.Add(DataProvider.OracleOleDBDataProvider);
                     _oracleDataSource.Providers.Add(DataProvider.OracleDataProvider);
@@ -100,7 +101,7 @@ namespace SQLConfigurator
 			{
 				if (_accessDataSource == null)
 				{
-					_accessDataSource = new DataSource("MicrosoftAccess", Strings.DataSource_MicrosoftAccess);
+					_accessDataSource = new DataSource("MicrosoftAccess", Resources.DataSource_MicrosoftAccess);
 					_accessDataSource.Providers.Add(DataProvider.OleDBDataProvider);
 				}
 				return _accessDataSource;
@@ -114,7 +115,7 @@ namespace SQLConfigurator
 			{
 				if (_odbcDataSource == null)
 				{
-					_odbcDataSource = new DataSource("OdbcDsn", Strings.DataSource_MicrosoftOdbcDsn);
+					_odbcDataSource = new DataSource("OdbcDsn", Resources.DataSource_MicrosoftOdbcDsn);
 					_odbcDataSource.Providers.Add(DataProvider.OdbcDataProvider);
 				}
 				return _odbcDataSource;
@@ -160,11 +161,11 @@ namespace SQLConfigurator
 			{
 				if (_providers.Count == 1 && _defaultProvider != value)
 				{
-					throw new InvalidOperationException(Strings.DataSource_CannotChangeSingleDataProvider);
+					throw new InvalidOperationException(Resources.DataSource_CannotChangeSingleDataProvider);
 				}
 				if (value != null && !_providers.Contains(value))
 				{
-					throw new InvalidOperationException(Strings.DataSource_DataProviderNotFound);
+					throw new InvalidOperationException(Resources.DataSource_DataProviderNotFound);
 				}
 				_defaultProvider = value;
 			}

@@ -4,6 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+using SQLConfigurator.Properties;
 using System;
 using System.Collections.Generic;
 
@@ -86,8 +87,8 @@ namespace SQLConfigurator
 				if (_sqlDataProvider == null)
 				{
 					Dictionary<string, string> descriptions = new Dictionary<string, string>();
-					descriptions.Add(DataSource.SqlDataSource.Name, Strings.DataProvider_Sql_DataSource_Description);
-					descriptions.Add(DataSource.MicrosoftSqlServerFileName, Strings.DataProvider_Sql_FileDataSource_Description);
+					descriptions.Add(DataSource.SqlDataSource.Name, Resources.DataProvider_Sql_DataSource_Description);
+					descriptions.Add(DataSource.MicrosoftSqlServerFileName, Resources.DataProvider_Sql_FileDataSource_Description);
 
 					Dictionary<string, Type> uiControls = new Dictionary<string, Type>();
 					uiControls.Add(DataSource.SqlDataSource.Name, typeof(SqlConnectionUIControl));
@@ -100,9 +101,9 @@ namespace SQLConfigurator
 
 					_sqlDataProvider = new DataProvider(
 						"System.Data.SqlClient",
-						Strings.DataProvider_Sql,
-						Strings.DataProvider_Sql_Short,
-						Strings.DataProvider_Sql_Description,
+						Resources.DataProvider_Sql,
+						Resources.DataProvider_Sql_Short,
+						Resources.DataProvider_Sql_Description,
 						typeof(System.Data.SqlClient.SqlConnection),
 						descriptions,
 						uiControls,
@@ -120,16 +121,16 @@ namespace SQLConfigurator
 				if (_oracleDataProvider == null)
 				{
 					Dictionary<string, string> descriptions = new Dictionary<string, string>();
-					descriptions.Add(DataSource.OracleDataSource.Name, Strings.DataProvider_Oracle_DataSource_Description);
+					descriptions.Add(DataSource.OracleDataSource.Name, Resources.DataProvider_Oracle_DataSource_Description);
 
 					Dictionary<string, Type> uiControls = new Dictionary<string, Type>();
 					uiControls.Add(String.Empty, typeof(OracleConnectionUIControl));
 
 					_oracleDataProvider = new DataProvider(
 						"System.Data.OracleClient",
-						Strings.DataProvider_Oracle,
-						Strings.DataProvider_Oracle_Short,
-						Strings.DataProvider_Oracle_Description,
+						Resources.DataProvider_Oracle,
+						Resources.DataProvider_Oracle_Short,
+						Resources.DataProvider_Oracle_Description,
 						// Disable OracleClient deprecation warnings
 #pragma warning disable 618
 						typeof(System.Data.OracleClient.OracleConnection),
@@ -150,9 +151,9 @@ namespace SQLConfigurator
 				if (_oleDBDataProvider == null)
 				{
 					Dictionary<string, string> descriptions = new Dictionary<string, string>();
-					descriptions.Add(DataSource.SqlDataSource.Name, Strings.DataProvider_OleDB_SqlDataSource_Description);
-					descriptions.Add(DataSource.OracleDataSource.Name, Strings.DataProvider_OleDB_OracleDataSource_Description);
-					descriptions.Add(DataSource.AccessDataSource.Name, Strings.DataProvider_OleDB_AccessDataSource_Description);
+					descriptions.Add(DataSource.SqlDataSource.Name, Resources.DataProvider_OleDB_SqlDataSource_Description);
+					descriptions.Add(DataSource.OracleDataSource.Name, Resources.DataProvider_OleDB_OracleDataSource_Description);
+					descriptions.Add(DataSource.AccessDataSource.Name, Resources.DataProvider_OleDB_AccessDataSource_Description);
 
 					Dictionary<string, Type> uiControls = new Dictionary<string, Type>();
 					uiControls.Add(DataSource.SqlDataSource.Name, typeof(SqlConnectionUIControl));
@@ -168,9 +169,9 @@ namespace SQLConfigurator
 
 					_oleDBDataProvider = new DataProvider(
 						"System.Data.OleDb",
-						Strings.DataProvider_OleDB,
-						Strings.DataProvider_OleDB_Short,
-						Strings.DataProvider_OleDB_Description,
+						Resources.DataProvider_OleDB,
+						Resources.DataProvider_OleDB_Short,
+						Resources.DataProvider_OleDB_Description,
 						typeof(System.Data.OleDb.OleDbConnection),
 						descriptions,
 						uiControls,
@@ -189,7 +190,7 @@ namespace SQLConfigurator
                 if (_oracleOleDBDataProvider == null)
                 {
                     Dictionary<string, string> descriptions = new Dictionary<string, string>();                    
-                    descriptions.Add(DataSource.OracleDataSource.Name, Strings.DataProvider_OracleOleDB_OracleDataSource_Description);
+                    descriptions.Add(DataSource.OracleDataSource.Name, Resources.DataProvider_OracleOleDB_OracleDataSource_Description);
                     
                     Dictionary<string, Type> uiControls = new Dictionary<string, Type>();                    
                     uiControls.Add(DataSource.OracleDataSource.Name, typeof(OracleConnectionUIControl));                    
@@ -201,9 +202,9 @@ namespace SQLConfigurator
 
                     _oracleOleDBDataProvider = new DataProvider(
                         "System.Data.OracleOleDb",
-                        Strings.DataProvider_OracleOleDB,
-                        Strings.DataProvider_OracleOleDB_Short,
-                        Strings.DataProvider_OracleOleDB_Description,
+                        Resources.DataProvider_OracleOleDB,
+                        Resources.DataProvider_OracleOleDB_Short,
+                        Resources.DataProvider_OracleOleDB_Description,
                         typeof(System.Data.OleDb.OleDbConnection),
                         descriptions,
                         uiControls,
@@ -222,16 +223,16 @@ namespace SQLConfigurator
 				if (_odbcDataProvider == null)
 				{
 					Dictionary<string, string> descriptions = new Dictionary<string, string>();
-					descriptions.Add(DataSource.OdbcDataSource.Name, Strings.DataProvider_Odbc_DataSource_Description);
+					descriptions.Add(DataSource.OdbcDataSource.Name, Resources.DataProvider_Odbc_DataSource_Description);
 
 					Dictionary<string, Type> uiControls = new Dictionary<string, Type>();
 					uiControls.Add(String.Empty, typeof(OdbcConnectionUIControl));
 
 					_odbcDataProvider = new DataProvider(
 						"System.Data.Odbc",
-						Strings.DataProvider_Odbc,
-						Strings.DataProvider_Odbc_Short,
-						Strings.DataProvider_Odbc_Description,
+						Resources.DataProvider_Odbc,
+						Resources.DataProvider_Odbc_Short,
+						Resources.DataProvider_Odbc_Description,
 						typeof(System.Data.Odbc.OdbcConnection),
 						descriptions,
 						uiControls,

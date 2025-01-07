@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Security.Permissions;
 
 using ThreadState = System.Threading.ThreadState;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -53,7 +54,7 @@ namespace SQLConfigurator
 			if (!(connectionProperties is SqlConnectionProperties) &&
 				!(connectionProperties is OleDBSqlConnectionProperties))
 			{
-				throw new ArgumentException(Strings.SqlConnectionUIControl_InvalidConnectionProperties);
+				throw new ArgumentException(Resources.SqlConnectionUIControl_InvalidConnectionProperties);
 			}
 
 			if (connectionProperties is OleDBSqlConnectionProperties)
@@ -424,11 +425,11 @@ namespace SQLConfigurator
 		private void Browse(object sender, System.EventArgs e)
 		{
 			OpenFileDialog fileDialog = new OpenFileDialog();
-			fileDialog.Title = Strings.SqlConnectionUIControl_BrowseFileTitle;
+			fileDialog.Title = Resources.SqlConnectionUIControl_BrowseFileTitle;
 			fileDialog.Multiselect = false;
 			fileDialog.RestoreDirectory = true;
-			fileDialog.Filter = Strings.SqlConnectionUIControl_BrowseFileFilter;
-			fileDialog.DefaultExt = Strings.SqlConnectionUIControl_BrowseFileDefaultExt;
+			fileDialog.Filter = Resources.SqlConnectionUIControl_BrowseFileFilter;
+			fileDialog.DefaultExt = Resources.SqlConnectionUIControl_BrowseFileDefaultExt;
 			if (this.Container != null)
 			{
 				this.Container.Add(fileDialog);

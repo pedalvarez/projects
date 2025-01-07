@@ -15,6 +15,7 @@ using System.Windows.Forms.Design;
 using System.Security.Permissions;
 
 using ThreadState = System.Threading.ThreadState;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -38,7 +39,7 @@ namespace SQLConfigurator
 		{
 			if (!(connectionProperties is OdbcConnectionProperties))
 			{
-				throw new ArgumentException(Strings.OdbcConnectionUIControl_InvalidConnectionProperties);
+				throw new ArgumentException(Resources.OdbcConnectionUIControl_InvalidConnectionProperties);
 			}
 
 			_connectionProperties = connectionProperties;
@@ -276,13 +277,13 @@ namespace SQLConfigurator
 				result = NativeMethods.SQLAllocEnv(out henv);
 				if (!NativeMethods.SQL_SUCCEEDED(result))
 				{
-					throw new ApplicationException(Strings.OdbcConnectionUIControl_SQLAllocEnvFailed);
+					throw new ApplicationException(Resources.OdbcConnectionUIControl_SQLAllocEnvFailed);
 				}
 
 				result = NativeMethods.SQLAllocConnect(henv, out hdbc);
 				if (!NativeMethods.SQL_SUCCEEDED(result))
 				{
-					throw new ApplicationException(Strings.OdbcConnectionUIControl_SQLAllocConnectFailed);
+					throw new ApplicationException(Resources.OdbcConnectionUIControl_SQLAllocConnectFailed);
 				}
 
 				string currentConnectionString = Properties.ToFullString();
@@ -296,7 +297,7 @@ namespace SQLConfigurator
 				}
 				if (!NativeMethods.SQL_SUCCEEDED(result) && result != NativeMethods.SQL_NO_DATA)
 				{
-					throw new ApplicationException(Strings.OdbcConnectionUIControl_SQLDriverConnectFailed);
+					throw new ApplicationException(Resources.OdbcConnectionUIControl_SQLDriverConnectFailed);
 				}
 				else
 				{

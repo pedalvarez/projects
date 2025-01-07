@@ -8,6 +8,7 @@ using System;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -38,7 +39,7 @@ namespace SQLConfigurator
 				!(connectionProperties is OleDBOracleConnectionProperties) &&
                 !(connectionProperties is OleDBOracleOracleConnectionProperties) )
 			{
-				throw new ArgumentException(Strings.OracleConnectionUIControl_InvalidConnectionProperties);
+				throw new ArgumentException(Resources.OracleConnectionUIControl_InvalidConnectionProperties);
 			}
 
 			if (connectionProperties is OdbcConnectionProperties)

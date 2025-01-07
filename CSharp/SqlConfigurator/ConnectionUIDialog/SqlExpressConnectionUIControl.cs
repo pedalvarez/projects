@@ -8,6 +8,7 @@ using System;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -31,7 +32,7 @@ namespace SQLConfigurator
 		{
 			if (!(connectionProperties is SqlFileConnectionProperties))
 			{
-				throw new ArgumentException(Strings.SqlFileConnectionUIControl_InvalidConnectionProperties);
+				throw new ArgumentException(Resources.SqlFileConnectionUIControl_InvalidConnectionProperties);
 			}
 
 			_connectionProperties = connectionProperties;
@@ -139,12 +140,12 @@ namespace SQLConfigurator
 		private void Browse(object sender, System.EventArgs e)
 		{
 			OpenFileDialog fileDialog = new OpenFileDialog();
-			fileDialog.Title = Strings.SqlConnectionUIControl_BrowseFileTitle;
+			fileDialog.Title = Resources.SqlConnectionUIControl_BrowseFileTitle;
 			fileDialog.Multiselect = false;
 			fileDialog.CheckFileExists = false;
 			fileDialog.RestoreDirectory = true;
-			fileDialog.Filter = Strings.SqlConnectionUIControl_BrowseFileFilter;
-			fileDialog.DefaultExt = Strings.SqlConnectionUIControl_BrowseFileDefaultExt;
+			fileDialog.Filter = Resources.SqlConnectionUIControl_BrowseFileFilter;
+			fileDialog.DefaultExt = Resources.SqlConnectionUIControl_BrowseFileDefaultExt;
 			fileDialog.FileName = Properties["AttachDbFilename"] as string;
 			if (this.Container != null)
 			{

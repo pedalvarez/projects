@@ -8,6 +8,7 @@ using System;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -36,7 +37,7 @@ namespace SQLConfigurator
 
 			if (!(connectionProperties is OleDBAccessConnectionProperties))
 			{
-				throw new ArgumentException(Strings.AccessConnectionUIControl_InvalidConnectionProperties);
+				throw new ArgumentException(Resources.AccessConnectionUIControl_InvalidConnectionProperties);
 			}
 
 			if (connectionProperties is OdbcConnectionProperties)
@@ -117,11 +118,11 @@ namespace SQLConfigurator
 		private void Browse(object sender, System.EventArgs e)
 		{
 			OpenFileDialog fileDialog = new OpenFileDialog();
-			fileDialog.Title = Strings.AccessConnectionUIControl_BrowseFileTitle;
+			fileDialog.Title = Resources.AccessConnectionUIControl_BrowseFileTitle;
 			fileDialog.Multiselect = false;
 			fileDialog.RestoreDirectory = true;
-			fileDialog.Filter = Strings.AccessConnectionUIControl_BrowseFileFilter;
-			fileDialog.DefaultExt = Strings.AccessConnectionUIControl_BrowseFileDefaultExt;
+			fileDialog.Filter = Resources.AccessConnectionUIControl_BrowseFileFilter;
+			fileDialog.DefaultExt = Resources.AccessConnectionUIControl_BrowseFileDefaultExt;
 			if (this.Container != null)
 			{
 				this.Container.Add(fileDialog);

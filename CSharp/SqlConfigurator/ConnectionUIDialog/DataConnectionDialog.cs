@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Windows.Forms.Design;
 using System.Security.Permissions;
 using System.Runtime.InteropServices;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -32,7 +33,7 @@ namespace SQLConfigurator
 			ComponentResourceManager resources = new ComponentResourceManager(typeof(DataConnectionSourceDialog));
 			this._chooseDataSourceTitle = resources.GetString("$this.Text");
 			this._chooseDataSourceAcceptText = resources.GetString("okButton.Text");
-			this._changeDataSourceTitle = Strings.DataConnectionDialog_ChangeDataSourceTitle;
+			this._changeDataSourceTitle = Resources.DataConnectionDialog_ChangeDataSourceTitle;
 
 			_dataSources = new DataSourceCollection(this);
 		}
@@ -51,13 +52,13 @@ namespace SQLConfigurator
 			}
 			if (dialog.DataSources.Count == 0)
 			{
-				throw new InvalidOperationException(Strings.DataConnectionDialog_NoDataSourcesAvailable);
+				throw new InvalidOperationException(Resources.DataConnectionDialog_NoDataSourcesAvailable);
 			}
 			foreach (DataSource dataSource in dialog.DataSources)
 			{
 				if (dataSource.Providers.Count == 0)
 				{
-					throw new InvalidOperationException(String.Format(Strings.DataConnectionDialog_NoDataProvidersForDataSource + dataSource.DisplayName.Replace("'", "''")));
+					throw new InvalidOperationException(String.Format(Resources.DataConnectionDialog_NoDataProvidersForDataSource + dataSource.DisplayName.Replace("'", "''")));
 				}
 			}
 
@@ -169,7 +170,7 @@ namespace SQLConfigurator
 			{
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (_headerLabel == null && (value == null || value.Length == 0))
 				{
@@ -258,7 +259,7 @@ namespace SQLConfigurator
 			{
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (value == null)
 				{
@@ -282,7 +283,7 @@ namespace SQLConfigurator
 			{
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (value == null)
 				{
@@ -306,7 +307,7 @@ namespace SQLConfigurator
 			{
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (value == null)
 				{
@@ -330,7 +331,7 @@ namespace SQLConfigurator
 			{
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (value == null)
 				{
@@ -354,7 +355,7 @@ namespace SQLConfigurator
 			{
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (value == null)
 				{
@@ -412,7 +413,7 @@ namespace SQLConfigurator
 				{
 					if (_showingDialog)
 					{
-						throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+						throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 					}
 					SetSelectedDataSource(value, false);
 				}
@@ -431,7 +432,7 @@ namespace SQLConfigurator
 				{
 					if (SelectedDataSource == null)
 					{
-						throw new InvalidOperationException(Strings.DataConnectionDialog_NoDataSourceSelected);
+						throw new InvalidOperationException(Resources.DataConnectionDialog_NoDataSourceSelected);
 					}
 					SetSelectedDataProvider(SelectedDataSource, value);
 				}
@@ -468,7 +469,7 @@ namespace SQLConfigurator
 				}
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				SetSelectedDataProvider(dataSource, dataProvider, false);
 			}
@@ -522,11 +523,11 @@ namespace SQLConfigurator
 			{
 				if (_showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (SelectedDataProvider == null)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_NoDataProviderSelected);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_NoDataProviderSelected);
 				}
 				Debug.Assert(ConnectionProperties != null);
 				if (ConnectionProperties != null)
@@ -654,7 +655,7 @@ namespace SQLConfigurator
 		{
 			if (!_showingDialog)
 			{
-				throw new NotSupportedException(Strings.DataConnectionDialog_ShowDialogNotSupported);
+				throw new NotSupportedException(Resources.DataConnectionDialog_ShowDialogNotSupported);
 			}
 			ConfigureDataSourceTextBox();
 			ConfigureChangeDataSourceButton();
@@ -727,7 +728,7 @@ namespace SQLConfigurator
 			}
 			if (e.Handled == false)
 			{
-				ShowError(null, Strings.DataConnectionDialog_NoHelpAvailable);
+				ShowError(null, Resources.DataConnectionDialog_NoHelpAvailable);
 				e.Handled = true;
 			}
 		}
@@ -878,7 +879,7 @@ namespace SQLConfigurator
 				e.MoveNext();
 				if (value != e.Current)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotChangeSingleDataSource);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotChangeSingleDataSource);
 				}
 			}
 			if (_selectedDataSource != value)
@@ -887,7 +888,7 @@ namespace SQLConfigurator
 				{
 					if (!_dataSources.Contains(value))
 					{
-						throw new InvalidOperationException(Strings.DataConnectionDialog_DataSourceNotFound);
+						throw new InvalidOperationException(Resources.DataConnectionDialog_DataSourceNotFound);
 					}
 					_selectedDataSource = value;
 					switch (_selectedDataSource.Providers.Count)
@@ -933,7 +934,7 @@ namespace SQLConfigurator
 				e.MoveNext();
 				if (value != e.Current)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotChangeSingleDataProvider);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotChangeSingleDataProvider);
 				}
 			}
 			if ((_dataProviderSelections.ContainsKey(dataSource) && _dataProviderSelections[dataSource] != value) ||
@@ -943,7 +944,7 @@ namespace SQLConfigurator
 				{
 					if (!dataSource.Providers.Contains(value))
 					{
-						throw new InvalidOperationException(Strings.DataConnectionDialog_DataSourceNoAssociation);
+						throw new InvalidOperationException(Resources.DataConnectionDialog_DataSourceNoAssociation);
 					}
 					_dataProviderSelections[dataSource] = value;
 				}
@@ -982,7 +983,7 @@ namespace SQLConfigurator
 					{
 						if (SelectedDataProvider.ShortDisplayName != null)
 						{
-							dataSourceTextBox.Text = String.Format(Strings.DataConnectionDialog_DataSourceWithShortProvider, dataSourceTextBox.Text, SelectedDataProvider.ShortDisplayName);
+							dataSourceTextBox.Text = String.Format(Resources.DataConnectionDialog_DataSourceWithShortProvider, dataSourceTextBox.Text, SelectedDataProvider.ShortDisplayName);
 						}
 						dataProviderToolTip.SetToolTip(dataSourceTextBox, SelectedDataProvider.DisplayName);
 					}
@@ -1182,11 +1183,11 @@ namespace SQLConfigurator
 			catch (Exception ex)
 			{
 				Cursor.Current = currentCursor;
-				ShowError(Strings.DataConnectionDialog_TestResults, ex);
+				ShowError(Resources.DataConnectionDialog_TestResults, ex);
 				return;
 			}
 			Cursor.Current = currentCursor;
-			ShowMessage(Strings.DataConnectionDialog_TestResults, Strings.DataConnectionDialog_TestConnectionSucceeded);
+			ShowMessage(Resources.DataConnectionDialog_TestResults, Resources.DataConnectionDialog_TestConnectionSucceeded);
 		}
 
 		private void ConfigureAcceptButton(object sender, EventArgs e)
@@ -1294,7 +1295,7 @@ namespace SQLConfigurator
 				}
 				if (_dialog._showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				if (!_list.Contains(item))
 				{
@@ -1311,7 +1312,7 @@ namespace SQLConfigurator
 			{
 				if (_dialog._showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				bool result = _list.Remove(item);
 				if (item == _dialog.SelectedDataSource)
@@ -1325,7 +1326,7 @@ namespace SQLConfigurator
 			{
 				if (_dialog._showingDialog)
 				{
-					throw new InvalidOperationException(Strings.DataConnectionDialog_CannotModifyState);
+					throw new InvalidOperationException(Resources.DataConnectionDialog_CannotModifyState);
 				}
 				_list.Clear();
 				_dialog.SetSelectedDataSource(null, true);

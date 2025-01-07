@@ -4,6 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
+using SQLConfigurator.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,7 +52,7 @@ namespace SQLConfigurator
 			string dataSource = ConnectionStringBuilder["Data Source"] as string;
 			if (dataSource == null || dataSource.Length == 0)
 			{
-				throw new InvalidOperationException(Strings.SqlConnectionProperties_MustSpecifyDataSource);
+				throw new InvalidOperationException(Resources.SqlConnectionProperties_MustSpecifyDataSource);
 			}
 			string database = ConnectionStringBuilder["Initial Catalog"] as string;
 			try
@@ -62,7 +63,7 @@ namespace SQLConfigurator
 			{
 				if (e.Number == SqlError_CannotOpenDatabase && database != null && database.Length > 0)
 				{
-					throw new InvalidOperationException(Strings.SqlConnectionProperties_CannotTestNonExistentDatabase);
+					throw new InvalidOperationException(Resources.SqlConnectionProperties_CannotTestNonExistentDatabase);
 				}
 				else
 				{
@@ -98,7 +99,7 @@ namespace SQLConfigurator
 			if (connection.ServerVersion.StartsWith("07", StringComparison.Ordinal) ||
 				connection.ServerVersion.StartsWith("08", StringComparison.Ordinal))
 			{
-				throw new NotSupportedException(Strings.SqlConnectionProperties_UnsupportedSqlVersion);
+				throw new NotSupportedException(Resources.SqlConnectionProperties_UnsupportedSqlVersion);
 			}
 		}
 
@@ -167,12 +168,12 @@ namespace SQLConfigurator
 			{
 				if (attachDbFilename == null || attachDbFilename.Length == 0)
 				{
-					throw new InvalidOperationException(Strings.SqlFileConnectionProperties_NoFileSpecified);
+					throw new InvalidOperationException(Resources.SqlFileConnectionProperties_NoFileSpecified);
 				}
 				ConnectionStringBuilder["AttachDbFilename"] = System.IO.Path.GetFullPath(attachDbFilename);
 				if (!System.IO.File.Exists(ConnectionStringBuilder["AttachDbFilename"] as string))
 				{
-					throw new InvalidOperationException(Strings.SqlFileConnectionProperties_CannotTestNonExistentMdf);
+					throw new InvalidOperationException(Resources.SqlFileConnectionProperties_CannotTestNonExistentMdf);
 				}
 				base.Test();
 			}
@@ -180,7 +181,7 @@ namespace SQLConfigurator
 			{
 				if (e.Number == -2) // timeout
 				{
-					throw new ApplicationException(e.Errors[0].Message + Environment.NewLine + Strings.SqlFileConnectionProperties_TimeoutReasons);
+					throw new ApplicationException(e.Errors[0].Message + Environment.NewLine + Resources.SqlFileConnectionProperties_TimeoutReasons);
 				}
 				throw;
 			}

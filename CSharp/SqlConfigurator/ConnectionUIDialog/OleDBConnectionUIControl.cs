@@ -17,6 +17,7 @@ using System.Windows.Forms.Design;
 using System.Runtime.InteropServices;
 
 using ThreadState = System.Threading.ThreadState;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -38,7 +39,7 @@ namespace SQLConfigurator
 		{
 			if (!(connectionProperties is OleDBConnectionProperties))
 			{
-				throw new ArgumentException(Strings.OleDBConnectionUIControl_InvalidConnectionProperties);
+				throw new ArgumentException(Resources.OleDBConnectionUIControl_InvalidConnectionProperties);
 			}
 
 			EnumerateProviders();

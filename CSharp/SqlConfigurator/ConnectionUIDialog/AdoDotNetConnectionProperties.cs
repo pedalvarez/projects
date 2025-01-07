@@ -11,6 +11,7 @@ using System.Data.Common;
 using System.Collections;
 using System.ComponentModel;
 using System.Collections.Generic;
+using SQLConfigurator.Properties;
 
 namespace SQLConfigurator
 {
@@ -169,7 +170,7 @@ namespace SQLConfigurator
 			// If the connection string is empty, don't even bother testing
 			if (testString == null || testString.Length == 0)
 			{
-				throw new InvalidOperationException(Strings.AdoDotNetConnectionProperties_NoProperties);
+				throw new InvalidOperationException(Resources.AdoDotNetConnectionProperties_NoProperties);
 			}
 
 			// Create a connection object
