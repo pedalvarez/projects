@@ -1,7 +1,5 @@
 :root {
-  color-scheme: light;
   --bg: #f4f5f7;
-  --surface: #ffffff;
   --column-bg: #ebecf0;
   --card-bg: #ffffff;
   --text: #172b4d;
@@ -9,23 +7,6 @@
   --accent: #0052cc;
   --accent-soft: #deebff;
   --border: #dfe1e6;
-  --card-border: #cfd4dd;
-  --shadow: 0 1px 1px rgba(9, 30, 66, 0.12);
-}
-
-body[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #101418;
-  --surface: #161b22;
-  --column-bg: #1d232b;
-  --card-bg: #222a33;
-  --text: #e6edf3;
-  --muted: #9ba7b4;
-  --accent: #579dff;
-  --accent-soft: rgba(87, 157, 255, 0.16);
-  --border: #30363d;
-  --card-border: #3b4552;
-  --shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
 }
 
 * {
@@ -37,7 +18,6 @@ body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
   background: var(--bg);
-  transition: background 160ms ease, color 160ms ease;
 }
 
 .topbar {
@@ -51,45 +31,12 @@ body {
   gap: 12px;
   padding: 14px 20px;
   border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-
-.topbar-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  background: #fff;
 }
 
 .topbar h1 {
   margin: 0;
   font-size: 1.25rem;
-}
-
-.subtitle {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.topbar-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.theme-toggle {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 9px 14px;
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  border-color: var(--accent);
 }
 
 .new-task-form {
@@ -102,12 +49,6 @@ body {
   border-radius: 6px;
   border: 1px solid var(--border);
   padding: 9px 10px;
-  color: var(--text);
-  background: var(--surface);
-}
-
-.new-task-form input::placeholder {
-  color: var(--muted);
 }
 
 .new-task-form button {
@@ -130,7 +71,6 @@ body {
 
 .column {
   background: var(--column-bg);
-  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 10px;
   display: flex;
@@ -175,9 +115,9 @@ body {
   background: var(--card-bg);
   border-radius: 8px;
   padding: 10px;
-  border: 1px solid var(--card-border);
+  border: 1px solid #cfd4dd;
   cursor: grab;
-  box-shadow: var(--shadow);
+  box-shadow: 0 1px 1px rgba(9, 30, 66, 0.12);
 }
 
 .task:active {
@@ -205,7 +145,6 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .topbar-actions,
   .new-task-form {
     width: 100%;
   }

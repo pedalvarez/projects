@@ -8,20 +8,11 @@
   </head>
   <body>
     <header class="topbar">
-      <div class="topbar-title-group">
-        <h1>Project Board</h1>
-        <p class="subtitle">Move tasks across the workflow just like a Jira board.</p>
-      </div>
-
-      <div class="topbar-actions">
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
-          <span class="theme-toggle-label">Dark mode</span>
-        </button>
-        <form id="new-task-form" class="new-task-form">
-          <input id="new-task-title" type="text" placeholder="Add a task title..." maxlength="90" required />
-          <button type="submit">Add Task</button>
-        </form>
-      </div>
+      <h1>Project Board</h1>
+      <form id="new-task-form" class="new-task-form">
+        <input id="new-task-title" type="text" placeholder="Add a task title..." maxlength="90" required />
+        <button type="submit">Add Task</button>
+      </form>
     </header>
 
     <main class="board" id="board">

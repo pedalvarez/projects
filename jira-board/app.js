@@ -1,45 +1,16 @@
-const storageKey = "jira-board-theme";
-const defaultTheme = "light";
 const seedTasks = [
-  { id: createTaskId(), title: "Define API contract", column: "todo" },
-  { id: createTaskId(), title: "Build authentication flow", column: "inprogress" },
-  { id: createTaskId(), title: "Run QA on payment checkout", column: "review" },
-  { id: createTaskId(), title: "Deploy staging build", column: "done" },
+  { id: crypto.randomUUID(), title: "Define API contract", column: "todo" },
+  { id: crypto.randomUUID(), title: "Build authentication flow", column: "inprogress" },
+  { id: crypto.randomUUID(), title: "Run QA on payment checkout", column: "review" },
+  { id: crypto.randomUUID(), title: "Deploy staging build", column: "done" },
 ];
 
 const lists = [...document.querySelectorAll(".task-list")];
 const template = document.getElementById("task-template");
 const form = document.getElementById("new-task-form");
 const titleInput = document.getElementById("new-task-title");
-const themeToggle = document.getElementById("theme-toggle");
-const themeToggleLabel = themeToggle.querySelector(".theme-toggle-label");
-const body = document.body;
-const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
 let tasks = [...seedTasks];
-
-function createTaskId() {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
-    return crypto.randomUUID();
-  }
-
-  return `task-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-}
-
-function setTheme(theme) {
-  const normalizedTheme = theme === "dark" ? "dark" : defaultTheme;
-
-  body.dataset.theme = normalizedTheme;
-  themeToggle.setAttribute("aria-pressed", String(normalizedTheme === "dark"));
-  themeToggleLabel.textContent = normalizedTheme === "dark" ? "Light mode" : "Dark mode";
-}
-
-function initializeTheme() {
-  const savedTheme = localStorage.getItem(storageKey);
-  const initialTheme = savedTheme ?? (prefersDarkScheme.matches ? "dark" : defaultTheme);
-
-  setTheme(initialTheme);
-}
 
 function render() {
   lists.forEach((list) => {
@@ -71,23 +42,6 @@ function attachDragHandlers(taskNode) {
   });
 }
 
-function handleDrop(event, list) {
-  event.preventDefault();
-  list.classList.remove("drag-over");
-
-  const taskId = event.dataTransfer.getData("text/plain");
-  const targetColumn = list.dataset.column;
-
-  tasks = tasks.map((task) => (task.id === taskId ? { ...task, column: targetColumn } : task));
-  render();
-}
-
-function syncSystemTheme(event) {
-  if (!localStorage.getItem(storageKey)) {
-    setTheme(event.matches ? "dark" : defaultTheme);
-  }
-}
-
 lists.forEach((list) => {
   list.addEventListener("dragover", (event) => {
     event.preventDefault();
@@ -100,7 +54,13 @@ lists.forEach((list) => {
   });
 
   list.addEventListener("drop", (event) => {
-    handleDrop(event, list);
+    event.preventDefault();
+    list.classList.remove("drag-over");
+    const taskId = event.dataTransfer.getData("text/plain");
+    const targetColumn = list.dataset.column;
+
+    tasks = tasks.map((task) => (task.id === taskId ? { ...task, column: targetColumn } : task));
+    render();
   });
 });
 
@@ -112,22 +72,9 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  tasks.unshift({ id: createTaskId(), title, column: "todo" });
+  tasks.unshift({ id: crypto.randomUUID(), title, column: "todo" });
   titleInput.value = "";
   render();
 });
 
-themeToggle.addEventListener("click", () => {
-  const nextTheme = body.dataset.theme === "dark" ? defaultTheme : "dark";
-  localStorage.setItem(storageKey, nextTheme);
-  setTheme(nextTheme);
-});
-
-if (typeof prefersDarkScheme.addEventListener === "function") {
-  prefersDarkScheme.addEventListener("change", syncSystemTheme);
-} else if (typeof prefersDarkScheme.addListener === "function") {
-  prefersDarkScheme.addListener(syncSystemTheme);
-}
-
-initializeTheme();
 render();
